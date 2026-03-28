@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a href="#mainContent" class="skip-link">Pular para o conteúdo</a>
+
+<div id="introScreen" class="intro-screen" aria-hidden="true">
+    <div class="intro-media">
+        <iframe
+                id="introVideo"
+                title="Intro de abertura"
+                src="https://player.vimeo.com/video/728769474?h=7ef8ee9fac&autoplay=1&loop=1&muted=1&background=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0"
+                width="640"
+                height="360"
+                frameborder="0"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                allowfullscreen>
+        </iframe>
+        <div class="intro-fallback"></div>
+    </div>
+
+    <div class="intro-overlay"></div>
+
+    <button id="introLogoBtn" class="intro-logo-btn" type="button" aria-label="Ativar intro e som">
+    </button>
+
+    <audio id="introAudio" preload="auto" src="./assets/netflix-intro.mp3"></audio>
+</div>
+
+<div id="loadingScreen" class="loading-screen" aria-live="polite">
+    <div class="loading-logo">NET<span>FLIX</span></div>
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Carregando experiência...</p>
+</div>
+
+<div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<section id="profileScreen" class="screen active-screen">
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo" aria-label="Netflix Pro">NET<span>FLIX</span></a>
+
+            <div class="search-container">
+                <label for="searchInput" class="sr-only">Buscar perfis</label>
+                <input type="search" id="searchInput" placeholder="Buscar perfis">
+                <button id="voiceSearch" type="button" aria-label="Buscar por voz">🎤</button>
+            </div>
+
+            <button class="profile-btn" id="profileBtn" type="button">
+                <img id="profileAvatar" src="https://ui-avatars.com/api/?name=Convidado&background=e50914&color=fff&rounded=true&size=36" alt="Avatar atual" width="36" height="36">
+                <span id="currentProfile">Convidado</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="profiles-stage">
+        <div class="profiles-copy">
+            <p class="eyebrow">Experiência premium</p>
+            <h1 id="mainTitle">Quem está assistindo?</h1>
+            <p class="subcopy">Escolha um perfil para entrar em uma interface cinematográfica com navegação funcional, busca, tema persistente e cards detalhados.</p>
+        </div>
+
+        <nav class="profiles" aria-label="Perfis disponíveis">
+            <a href="#" class="profile" data-profile="gustavo">
+                <figure>
+                    <img src="./assets/perfil-1.jpg" alt="Gustavo" width="180" height="180">
+                    <figcaption>Gustavo</figcaption>
+                </figure>
+            </a>
+            <a href="#" class="profile" data-profile="thiago">
+                <figure>
+                    <img src="./assets/perfil-2.jpg" alt="Thiago" width="180" height="180">
+                    <figcaption>Thiago</figcaption>
+                </figure>
+            </a>
+            <a href="#" class="profile" data-profile="thamiris">
+                <figure>
+                    <img src="./assets/perfil-3.jpg" alt="Thamiris" width="180" height="180">
+                    <figcaption>Thamiris</figcaption>
+                </figure>
+            </a>
+            <a href="#" class="profile" data-profile="vini">
+                <figure>
+                    <img src="./assets/perfil-4.jpg" alt="Vini" width="180" height="180">
+                    <figcaption>Vini</figcaption>
+                </figure>
+            </a>
+        </nav>
+
+        <button id="manageProfiles" class="add-profile" type="button">Gerenciar Perfis</button>
+    </main>
+</section>
+
+<section id="homeScreen" class="screen">
+    <header class="header-home">
+        <div class="header-home-container">
+            <a href="#" class="logo-home" id="topLogo" aria-label="Netflix Pro">NET<span>FLIX</span></a>
+
+            <button id="mobileMenuBtn" class="mobile-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="topNav">☰</button>
+
+            <nav class="top-nav" id="topNav" aria-label="Navegação principal">
+                <a href="#" class="top-nav-link active" data-section="inicio">Início</a>
+                <a href="#" class="top-nav-link" data-section="series">Séries</a>
+                <a href="#" class="top-nav-link" data-section="filmes">Filmes</a>
+                <a href="#" class="top-nav-link" data-section="bombando">Bombando</a>
+                <a href="#" class="top-nav-link" data-section="lista">Minha lista <span id="listCount" class="list-count">0</span></a>
+            </nav>
+
+            <div class="header-home-actions">
+                <label for="homeSearch" class="sr-only">Pesquisar filmes e séries</label>
+                <input type="search" id="homeSearch" placeholder="Pesquisar filmes e séries...">
+                <button id="favoritesBtn" type="button" aria-label="Abrir favoritos">♡ <span id="favoritesCount">0</span></button>
+                <button id="homeProfile" type="button" aria-label="Trocar perfil">👤</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent" class="home-content">
+        <section class="hero-section">
+            <div class="hero-media">
+
+                <div class="video-fallback" aria-hidden="true"></div>
+            </div>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-info">
+                <p class="hero-kicker">Netflix Pro Original Experience</p>
+                <h2 class="hero-title">STRANGER THINGS</h2>
+                <p class="hero-meta">Original Netflix • 16 • 4 temporadas • Ficção científica</p>
+                <p class="hero-sinopse">
+                    Quando um garoto desaparece, uma cidade inteira descobre segredos sombrios envolvendo experimentos secretos, forças sobrenaturais e uma menina muito especial.
+                </p>
+
+                <div class="hero-actions">
+                    <button id="heroPlayBtn" class="btn-play" type="button">▶ Reproduzir</button>
+                    <button id="heroInfoBtn" class="btn-info" type="button">Mais informações</button>
+                    <button id="addToListBtn" class="btn-list" type="button">＋ Minha lista</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="row-section">
+            <div class="row-header">
+                <h2>Agora em alta</h2>
+                <div class="row-controls">
+                    <button class="row-btn" data-target="rowTrending" aria-label="Voltar">‹</button>
+                    <button class="row-btn" data-target="rowTrending" aria-label="Avançar">›</button>
+                </div>
+            </div>
+            <div class="row-container" id="rowTrending"></div>
+        </section>
+
+        <section class="row-section">
+            <div class="row-header">
+                <h2>Continuar assistindo</h2>
+                <div class="row-controls">
+                    <button class="row-btn" data-target="rowContinue" aria-label="Voltar">‹</button>
+                    <button class="row-btn" data-target="rowContinue" aria-label="Avançar">›</button>
+                </div>
+            </div>
+            <div class="row-container" id="rowContinue"></div>
+        </section>
+
+        <section class="row-section" id="recentSection">
+            <div class="row-header">
+                <h2>Visto recentemente</h2>
+            </div>
+            <div class="row-container" id="rowRecent"></div>
+        </section>
+
+        <section class="row-section" id="recommendationsSection">
+            <div class="row-header">
+                <h2>Recomendados para você</h2>
+            </div>
+            <div class="row-container" id="rowRecommendations"></div>
+        </section>
+
+        <section class="row-section" id="myListSection">
+            <div class="row-header">
+                <h2>Minha lista</h2>
+                <div class="row-controls">
+                    <button class="row-btn" data-target="rowMyList" aria-label="Voltar">‹</button>
+                    <button class="row-btn" data-target="rowMyList" aria-label="Avançar">›</button>
+                </div>
+            </div>
+            <div class="row-container" id="rowMyList">
+                <div class="movie-card empty-state" data-empty="true"></div>
+            </div>
+        </section>
+    </main>
+</section>
+
+<dialog id="profileModal" class="modal" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+    <div class="modal-content">
+        <h2 id="modalTitle">Título</h2>
+        <p id="modalDescription">Descrição</p>
+        <p id="modalMeta" class="modal-meta">Meta</p>
+        <div class="modal-actions">
+            <button id="closeProfileModal" type="button">Fechar</button>
+            <button id="modalAddListBtn" type="button">＋ Minha lista</button>
+            <button id="watchNowBtn" type="button">▶ Assistir agora</button>
+        </div>
+    </div>
+</dialog>
+
+<section id="detailScreen" class="detail-screen" aria-hidden="true">
+    <div class="detail-hero">
+        <button id="backToHomeBtn" class="back-btn" type="button">← Voltar</button>
+        <div class="detail-poster">
+            <img id="detailImage" src="" alt="Imagem do conteúdo">
+        </div>
+        <div class="detail-content">
+            <p class="detail-kicker">Detalhes do conteúdo</p>
+            <h2 id="detailTitle">Título</h2>
+            <p class="detail-badge">Conteúdo selecionado</p>
+            <p id="detailMeta" class="detail-meta">Meta</p>
+            <p id="detailDescription" class="detail-description">Descrição</p>
+            <div class="detail-actions">
+                <button id="detailWatchBtn" class="btn-play" type="button">▶ Assistir agora</button>
+                <button id="detailListBtn" class="btn-list" type="button">＋ Minha lista</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<button id="themeToggle" class="theme-toggle" type="button" aria-label="Alternar tema">☀</button>
+<script src="theme.js" defer></script>
+</body>
+</html>
